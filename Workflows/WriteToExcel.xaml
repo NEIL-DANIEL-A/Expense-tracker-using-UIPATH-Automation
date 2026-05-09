@@ -9,7 +9,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>845.6,5095.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>845.6,5152.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>WriteToExcel_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -127,7 +127,7 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="WriteToExcel" sap:VirtualizedContainerService.HintSize="803.2,5030.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="WriteToExcel" sap:VirtualizedContainerService.HintSize="803.2,5088" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_FilePath" />
       <Variable x:TypeArguments="x:String" Name="str_SheetName" />
@@ -147,7 +147,7 @@
         <OutArgument x:TypeArguments="x:String">[str_FilePath]</OutArgument>
       </ui:GetRobotAsset.Value>
     </ui:GetRobotAsset>
-    <Assign sap:VirtualizedContainerService.HintSize="740.8,80.8" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign sap:VirtualizedContainerService.HintSize="740.8,81.6" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[str_SheetName]</OutArgument>
       </Assign.To>
@@ -198,20 +198,28 @@
         </Catch>
       </TryCatch.Catches>
     </TryCatch>
-    <If Condition="[dt_Existing Is Nothing]" sap:VirtualizedContainerService.HintSize="740.8,4072.8" sap2010:WorkflowViewState.IdRef="If_3">
+    <If Condition="[dt_Existing Is Nothing]" sap:VirtualizedContainerService.HintSize="740.8,4129.6" sap2010:WorkflowViewState.IdRef="If_3">
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="377.6,388" sap2010:WorkflowViewState.IdRef="Sequence_18">
+        <Sequence sap:VirtualizedContainerService.HintSize="476.8,509.6" sap2010:WorkflowViewState.IdRef="Sequence_18">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:WriteRange WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[in_Categorized]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="334.4,116" sap2010:WorkflowViewState.IdRef="WriteRange_3" SheetName="[str_SheetName]" StartingCell="A1" WorkbookPath="[str_FilePath]" />
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334.4,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;New sheet created and written: &quot; + str_SheetName]" />
+          <ui:WriteRange WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[in_Categorized]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="433.6,116" sap2010:WorkflowViewState.IdRef="WriteRange_3" SheetName="[str_SheetName]" StartingCell="A1" WorkbookPath="[str_FilePath]" />
+          <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_14">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">[out_NewRowCount]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">[in_Categorized.Rows.Count]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;New sheet created and written: &quot; + str_SheetName]" />
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence sap:VirtualizedContainerService.HintSize="707.2,3501.6" sap2010:WorkflowViewState.IdRef="Sequence_19">
+        <Sequence sap:VirtualizedContainerService.HintSize="707.2,3436.8" sap2010:WorkflowViewState.IdRef="Sequence_19">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -305,7 +313,7 @@
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&#xD;&#xA;               newRow(0).ToString,&#xD;&#xA;&#x9;&#x9;&#x9;   newRow(1).ToString,&#xD;&#xA;&#x9;&#x9;&#x9;   newRow(2).ToString,&#xD;&#xA;&#x9;&#x9;&#x9;   newRow(3).ToString,&#xD;&#xA;&#x9;&#x9;&#x9;   newRow(4).ToString&#xD;&#xA;           }]" DataTable="[dt_NewRows]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334.4,188" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                        <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{&#xA;               newRow(0).ToString,&#xA;&#x9;&#x9;&#x9;   newRow(1).ToString,&#xA;&#x9;&#x9;&#x9;   newRow(2).ToString,&#xA;&#x9;&#x9;&#x9;   newRow(3).ToString,&#xA;&#x9;&#x9;&#x9;   newRow(4).ToString&#xA;           }]" DataTable="[dt_NewRows]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334.4,188" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
                         <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334.4,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;New row added: &quot; + newRow(0).ToString + &quot; - &quot; + newRow(1).ToString]" />
                       </Sequence>
                     </If.Then>
@@ -369,33 +377,6 @@
               </Sequence>
             </If.Else>
           </If>
-          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="664,24.8" sap2010:WorkflowViewState.IdRef="CommentOut_2">
-            <ui:CommentOut.Body>
-              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="496,532" sap2010:WorkflowViewState.IdRef="Sequence_21">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <Assign sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_8">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:Int32">[int_LastRow]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:Int32">[dt_Existing.Rows.Count + 2]</InArgument>
-                  </Assign.Value>
-                </Assign>
-                <ui:WriteRange WorkbookPathResource="{x:Null}" AddHeaders="False" DataTable="[in_Categorized]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="433.6,116" sap2010:WorkflowViewState.IdRef="WriteRange_4" SheetName="[str_SheetName]" StartingCell="[&quot;A&quot; + int_LastRow.ToString]" WorkbookPath="[str_FilePath]" />
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;Data appended to sheet: &quot; + str_SheetName + &quot; at row &quot; + int_LastRow.ToString]" />
-              </Sequence>
-            </ui:CommentOut.Body>
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </ui:CommentOut>
         </Sequence>
       </If.Else>
     </If>

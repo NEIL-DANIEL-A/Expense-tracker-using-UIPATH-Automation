@@ -154,8 +154,8 @@
         <OutArgument x:TypeArguments="x:String">[str_GmailUser]</OutArgument>
       </ui:GetRobotAsset.Value>
     </ui:GetRobotAsset>
-    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="GmailPassword" CacheStrategy="None" DisplayName="Get Credential" FolderPath="Expense Tracker" sap:VirtualizedContainerService.HintSize="785.6,143.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[str_GmailPass]" Username="[str_GmailUser]" />
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="PdfSavePath" CacheStrategy="None" DisplayName="Get Asset" FolderPath="Expense Tracker" sap:VirtualizedContainerService.HintSize="785.6,143.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="GmailPassword" CacheStrategy="None" DisplayName="Get Credential" FolderPath="Expense Tracker" sap:VirtualizedContainerService.HintSize="1016,143.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[str_GmailPass]" Username="[str_GmailUser]" />
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="PdfSavePath" CacheStrategy="None" DisplayName="Get Asset" FolderPath="Expense Tracker" sap:VirtualizedContainerService.HintSize="1016,143.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[str_SavePath]</OutArgument>
       </ui:GetRobotAsset.Value>
