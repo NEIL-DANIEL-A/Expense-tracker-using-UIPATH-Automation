@@ -1,3 +1,67 @@
 ﻿{
-  "Food": ["DINE N FUN"]
+  "Food": [
+    "DOMINOS",
+    "PIZZA",
+    "ZOMATO",
+    "SWIGGY",
+    "DINE N FUN",
+    "DINE",
+    "RESTAURANT",
+    "CAFE",
+    "FOOD"
+  ],
+  "Entertainment": [
+    "SPOTIFY",
+    "GOOGLE INDIA D",
+    "NETFLIX",
+    "HOTSTAR",
+    "PRIME",
+    "YOUTUBE",
+    "ZEE5"
+  ],
+  "Education": [
+    "COLLEGE",
+    "FEES",
+    "UDEMY",
+    "COURSERA",
+    "BOOK",
+    "LIBRARY"
+  ],
+  "Utilities": [
+    "AIRTEL",
+    "JIO",
+    "BSNL",
+    "BESCOM",
+    "TNEB",
+    "ELECTRICITY",
+    "WATER",
+    "GAS"
+  ],
+  "Shopping": [
+    "AMAZON",
+    "FLIPKART",
+    "MYNTRA",
+    "MEESHO",
+    "NYKAA",
+    "AJIO"
+  ],
+  "Travel": [
+    "IRCTC",
+    "OLA",
+    "UBER",
+    "RAPIDO",
+    "REDBUS",
+    "MAKEMYTRIP",
+    "YATRA",
+    "CUMTA"
+  ],
+  "Health": [
+    "PHARMACY",
+    "HOSPITAL",
+    "APOLLO",
+    "MEDPLUS",
+    "CLINIC",
+    "DOCTOR",
+    "MED"
+  ]
 }

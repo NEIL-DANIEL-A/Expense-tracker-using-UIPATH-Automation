@@ -5,7 +5,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>968.8,5888.8</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>968.8,6721.6</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -95,7 +95,7 @@
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="979.2,5824" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="979.2,6656.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="out_PdfPath" />
       <Variable x:TypeArguments="x:String" Name="out_Month" />
@@ -108,6 +108,7 @@
       <Variable x:TypeArguments="x:Int32" Name="int_PollingInterval" />
       <Variable x:TypeArguments="s:String[]" Name="lst_PdfPaths" />
       <Variable x:TypeArguments="x:Boolean" Default="True" Name="bln_HasItems" />
+      <Variable x:TypeArguments="sd:DataTable" Name="out_BudgetSummary" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -121,16 +122,16 @@
       </ui:GetRobotAsset.Value>
     </ui:GetRobotAsset>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="916.8,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Polling interval fetched: &quot; + int_PollingInterval.ToString]" />
-    <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="True" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="916.8,5164" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+    <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="True" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="916.8,5996.8" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
       <ui:InterruptibleDoWhile.Body>
-        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="883.2,5027.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="883.2,5860" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="840,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Entered Do While loop&quot;]" />
-          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="840,4625.6" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="840,5458.4" sap2010:WorkflowViewState.IdRef="TryCatch_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -138,7 +139,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <TryCatch.Try>
-              <Sequence sap:VirtualizedContainerService.HintSize="803.2,4371.2" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <Sequence sap:VirtualizedContainerService.HintSize="803.2,5204" sap2010:WorkflowViewState.IdRef="Sequence_5">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -152,9 +153,9 @@
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
                 <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="740.8,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;Out of Get mail attachment sequence&quot;]" />
-                <If Condition="[out_MailFound = True]" sap:VirtualizedContainerService.HintSize="740.8,3710.4" sap2010:WorkflowViewState.IdRef="If_1">
+                <If Condition="[out_MailFound = True]" sap:VirtualizedContainerService.HintSize="740.8,4543.2" sap2010:WorkflowViewState.IdRef="If_1">
                   <If.Then>
-                    <Sequence sap:VirtualizedContainerService.HintSize="707.2,3527.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <Sequence sap:VirtualizedContainerService.HintSize="707.2,4360" sap2010:WorkflowViewState.IdRef="Sequence_3">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -167,9 +168,9 @@
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                       <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="664,90.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
-                      <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[bln_HasItems = True]" DisplayName="While" sap:VirtualizedContainerService.HintSize="664,2940.8" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+                      <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[bln_HasItems = True]" DisplayName="While" sap:VirtualizedContainerService.HintSize="664,3773.6" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
                         <ui:InterruptibleWhile.Body>
-                          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="630.4,2804" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="630.4,3636.8" sap2010:WorkflowViewState.IdRef="Sequence_13">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -181,7 +182,7 @@
                                 <OutArgument x:TypeArguments="x:String" x:Key="out_PdfPath">[out_PdfPath]</OutArgument>
                               </ui:InvokeWorkflowFile.Arguments>
                             </ui:InvokeWorkflowFile>
-                            <If Condition="[out_QueueItem IsNot Nothing]" sap:VirtualizedContainerService.HintSize="587.2,2530.4" sap2010:WorkflowViewState.IdRef="If_2">
+                            <If Condition="[out_QueueItem IsNot Nothing]" sap:VirtualizedContainerService.HintSize="587.2,3363.2" sap2010:WorkflowViewState.IdRef="If_2">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -189,7 +190,7 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                               <If.Then>
-                                <Sequence sap:VirtualizedContainerService.HintSize="553.6,2347.2" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                                <Sequence sap:VirtualizedContainerService.HintSize="553.6,2826.4" sap2010:WorkflowViewState.IdRef="Sequence_6">
                                   <Sequence.Variables>
                                     <Variable x:TypeArguments="x:String" Name="str_FirstDate" />
                                   </Sequence.Variables>
@@ -204,9 +205,9 @@
                                       <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_Transactions">[out_Transactions]</OutArgument>
                                     </ui:InvokeWorkflowFile.Arguments>
                                   </ui:InvokeWorkflowFile>
-                                  <If Condition="[out_Transactions IsNot Nothing AndAlso out_Transactions.Rows.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="510.4,2073.6" sap2010:WorkflowViewState.IdRef="If_4">
+                                  <If Condition="[out_Transactions IsNot Nothing AndAlso out_Transactions.Rows.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="510.4,2552.8" sap2010:WorkflowViewState.IdRef="If_4">
                                     <If.Then>
-                                      <Sequence sap:VirtualizedContainerService.HintSize="476.8,1890.4" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                                      <Sequence sap:VirtualizedContainerService.HintSize="476.8,2072.8" sap2010:WorkflowViewState.IdRef="Sequence_14">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -259,8 +260,10 @@
                                             <InArgument x:TypeArguments="x:String" x:Key="in_Year">[out_Year]</InArgument>
                                             <InArgument x:TypeArguments="x:String" x:Key="BreakTriggerScopeInArgument" />
                                             <OutArgument x:TypeArguments="x:Int32" x:Key="out_NewRowCount">[int_RowCount]</OutArgument>
+                                            <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_BudgetSummary">[out_BudgetSummary]</OutArgument>
                                           </ui:InvokeWorkflowFile.Arguments>
                                         </ui:InvokeWorkflowFile>
+                                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Info" Message="[&quot;BudgetSummary in Main before notification: &quot; + out_BudgetSummary.Rows.Count.ToString]" />
                                         <If Condition="[int_RowCount &gt; 0]" sap:VirtualizedContainerService.HintSize="433.6,648.8" sap2010:WorkflowViewState.IdRef="If_5">
                                           <If.Then>
                                             <Sequence sap:VirtualizedContainerService.HintSize="377.6,233.6" sap2010:WorkflowViewState.IdRef="Sequence_17">
@@ -274,6 +277,7 @@
                                                   <InArgument x:TypeArguments="x:String" x:Key="in_Month">[out_Month]</InArgument>
                                                   <InArgument x:TypeArguments="x:String" x:Key="in_Year">[out_Year]</InArgument>
                                                   <InArgument x:TypeArguments="x:Int32" x:Key="in_RowCount">[int_RowCount]</InArgument>
+                                                  <InArgument x:TypeArguments="sd:DataTable" x:Key="in_BudgetSummary">[out_BudgetSummary]</InArgument>
                                                 </ui:InvokeWorkflowFile.Arguments>
                                               </ui:InvokeWorkflowFile>
                                             </Sequence>
