@@ -8,7 +8,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>845.6,2536</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>845.6,2356</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SendNotification_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -47,6 +47,7 @@
       <x:String>System.Xml.Serialization</x:String>
       <x:String>UiPath.DataTableUtilities</x:String>
       <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>System.Globalization</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -111,7 +112,7 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="SendNotification" sap:VirtualizedContainerService.HintSize="726.4,2471.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="SendNotification" sap:VirtualizedContainerService.HintSize="649.6,2291.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_GmailUser" />
       <Variable x:TypeArguments="ss:SecureString" Name="str_GmailPass" />
@@ -122,41 +123,72 @@
       <Variable x:TypeArguments="x:String" Name="str_RowColor" />
       <Variable x:TypeArguments="x:String" Name="str_IsOver" />
       <Variable x:TypeArguments="x:String" Name="str_HasBudget" />
+      <Variable x:TypeArguments="x:String" Name="str_Timestamp">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String" Value="" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="str_OverBudgetRows" />
+      <Variable x:TypeArguments="x:String" Name="str_OverBudgetSection" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="GmailUsername" CacheStrategy="None" DisplayName="Get Asset" FolderPath="Expense Tracker" sap:VirtualizedContainerService.HintSize="664,143.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="GmailUsername" CacheStrategy="None" DisplayName="Get Asset" FolderPath="Expense Tracker" sap:VirtualizedContainerService.HintSize="587.2,143.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
       <ui:GetRobotAsset.Value>
         <OutArgument x:TypeArguments="x:String">[str_GmailUser]</OutArgument>
       </ui:GetRobotAsset.Value>
     </ui:GetRobotAsset>
-    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="GmailPassword" CacheStrategy="None" DisplayName="Get Credential" FolderPath="Expense Tracker" sap:VirtualizedContainerService.HintSize="664,143.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[str_GmailPass]" Username="[str_GmailUser]" />
-    <Assign sap:VirtualizedContainerService.HintSize="664,80.8" sap2010:WorkflowViewState.IdRef="Assign_2">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[str_TableRows]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">
-          <Literal x:TypeArguments="x:String" Value="" />
-        </InArgument>
-      </Assign.Value>
-    </Assign>
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[in_BudgetSummary]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="664,1378.4" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="GmailPassword" CacheStrategy="None" DisplayName="Get Credential" FolderPath="Expense Tracker" sap:VirtualizedContainerService.HintSize="587.2,143.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[str_GmailPass]" Username="[str_GmailUser]" />
+    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="587.2,180" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[str_TableRows]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" Value="" />
+              </InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[str_OverBudgetRows]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" Value="" />
+              </InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[str_Timestamp]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">[DateTime.Now.ToString("dd-MMM-yyyy hh:mm tt", System.Globalization.CultureInfo.InvariantCulture)]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+    </ui:MultipleAssign>
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[in_BudgetSummary]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="587.2,976.8" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="summaryRow" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="630.4,1190.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="553.6,788.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="587.2,180" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+            <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="510.4,180" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
               <ui:MultipleAssign.AssignOperations>
                 <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
                   <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -180,125 +212,86 @@
                       <OutArgument x:TypeArguments="x:String">[str_RowColor]</OutArgument>
                     </ui:AssignOperation.To>
                     <ui:AssignOperation.Value>
-                      <InArgument x:TypeArguments="x:String" xml:space="preserve">[If(str_HasBudget = "False", "#F5F5F5",
-                If(str_IsOver = "True", "#f70202", "#03fc03"))]</InArgument>
+                      <InArgument x:TypeArguments="x:String" xml:space="preserve">[If(str_HasBudget = "False", "#F0F0F0",
+If(str_IsOver = "True", "#FFCCCC", "#CCFFCC"))]</InArgument>
                     </ui:AssignOperation.Value>
                   </ui:AssignOperation>
                 </scg:List>
               </ui:MultipleAssign.AssignOperations>
             </ui:MultipleAssign>
-            <Assign sap:VirtualizedContainerService.HintSize="587.2,84.8" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign sap:VirtualizedContainerService.HintSize="510.4,83.2" sap2010:WorkflowViewState.IdRef="Assign_3">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[str_TableRows]</OutArgument>
               </Assign.To>
               <Assign.Value>
                 <InArgument x:TypeArguments="x:String" xml:space="preserve">[str_TableRows +
-       "&lt;tr style='background-color:" + str_RowColor + "'&gt;" +
-       "&lt;td style='padding:8px;border:1px solid #ddd'&gt;" + summaryRow(0).ToString + "&lt;/td&gt;" +
-       "&lt;td style='padding:8px;border:1px solid #ddd'&gt;" + summaryRow(1).ToString + "&lt;/td&gt;" +
-       "&lt;td style='padding:8px;border:1px solid #ddd'&gt;" + summaryRow(2).ToString + "&lt;/td&gt;" +
-       "&lt;/tr&gt;"]</InArgument>
+"&lt;tr&gt;" +
+"&lt;td style='padding:10px 15px;border:1px solid #ddd;background-color:" + str_RowColor + ";font-size:14px'&gt;" + summaryRow(0).ToString + "&lt;/td&gt;" +
+"&lt;td style='padding:10px 15px;border:1px solid #ddd;background-color:" + str_RowColor + ";font-size:14px;text-align:right'&gt;₹ " + summaryRow(1).ToString + "&lt;/td&gt;" +
+"&lt;td style='padding:10px 15px;border:1px solid #ddd;background-color:" + str_RowColor + ";font-size:14px;text-align:right'&gt;" + If(summaryRow(2).ToString = "-", "-", "₹ " + summaryRow(2).ToString) + "&lt;/td&gt;" +
+"&lt;/tr&gt;"]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign sap:VirtualizedContainerService.HintSize="587.2,80.8" sap2010:WorkflowViewState.IdRef="Assign_4">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:String">[str_OverBudget]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:String">
-                  <Literal x:TypeArguments="x:String" Value="" />
-                </InArgument>
-              </Assign.Value>
-            </Assign>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[in_BudgetSummary]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="587.2,635.2" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
-              <ui:ForEachRow.Body>
-                <ActivityAction x:TypeArguments="sd:DataRow">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="alertRow" />
-                  </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="553.6,447.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <If Condition="[alertRow(3).ToString = &quot;True&quot;]" sap:VirtualizedContainerService.HintSize="510.4,357.6" sap2010:WorkflowViewState.IdRef="If_1">
-                      <If.Then>
-                        <Sequence sap:VirtualizedContainerService.HintSize="476.8,174.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <Assign sap:VirtualizedContainerService.HintSize="433.6,84.8" sap2010:WorkflowViewState.IdRef="Assign_5">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="x:String">[str_OverBudget]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="x:String" xml:space="preserve">[str_OverBudget +
-       "&lt;li style='color:#FF0000'&gt;&lt;b&gt;" + alertRow(0).ToString +
-       "&lt;/b&gt;: Spent " + alertRow(1).ToString +
-       " vs Budget " + alertRow(2).ToString +
-       " (Over by " + (CDbl(alertRow(1).ToString) - CDbl(alertRow(2).ToString)).ToString("F2") +
-       ")&lt;/li&gt;"]</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                        </Sequence>
-                      </If.Then>
-                      <If.Else>
-                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_5" />
-                      </If.Else>
-                    </If>
-                  </Sequence>
-                </ActivityAction>
-              </ui:ForEachRow.Body>
-            </ui:ForEachRow>
+            <If Condition="[str_IsOver = &quot;True&quot;]" sap:VirtualizedContainerService.HintSize="510.4,356" sap2010:WorkflowViewState.IdRef="If_2">
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="476.8,172.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="433.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_7">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[str_OverBudgetRows]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String" xml:space="preserve">[str_OverBudgetRows +
+"&lt;tr&gt;" +
+"&lt;td style='padding:8px 15px;color:#CC0000;font-size:13px'&gt;⚠️ &lt;b&gt;" + summaryRow(0).ToString + "&lt;/b&gt;&lt;/td&gt;" +
+"&lt;td style='padding:8px 15px;color:#CC0000;font-size:13px'&gt;Spent ₹" + summaryRow(1).ToString + " vs Budget ₹" + summaryRow(2).ToString + "&lt;/td&gt;" +
+"&lt;td style='padding:8px 15px;color:#CC0000;font-size:13px'&gt;Over by ₹" + (CDbl(summaryRow(1).ToString) - CDbl(summaryRow(2).ToString)).ToString("F2") + "&lt;/td&gt;" +
+"&lt;/tr&gt;"]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_7" />
+              </If.Else>
+            </If>
           </Sequence>
         </ActivityAction>
       </ui:ForEachRow.Body>
     </ui:ForEachRow>
-    <Assign sap:VirtualizedContainerService.HintSize="664,84.8" sap2010:WorkflowViewState.IdRef="Assign_6">
+    <Assign sap:VirtualizedContainerService.HintSize="587.2,83.2" sap2010:WorkflowViewState.IdRef="Assign_8">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[str_OverBudgetSection]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String" xml:space="preserve">[If(String.IsNullOrEmpty(str_OverBudgetRows),
+"&lt;div style='background-color:#E8F5E9;border-left:4px solid #4CAF50;padding:15px;margin:20px 0;border-radius:4px'&gt;" +
+"&lt;p style='margin:0;color:#2E7D32;font-size:14px'&gt;✅ &lt;b&gt;Great job!&lt;/b&gt; All categories are within budget this month!&lt;/p&gt;" +
+"&lt;/div&gt;",
+"&lt;div style='background-color:#FFEBEE;border-left:4px solid #F44336;padding:15px;margin:20px 0;border-radius:4px'&gt;" +
+"&lt;p style='margin:0 0 10px 0;color:#C62828;font-size:15px;font-weight:bold'&gt;⚠️ OVER BUDGET ALERT&lt;/p&gt;" +
+"&lt;table style='width:100%;border-collapse:collapse'&gt;" +
+str_OverBudgetRows +
+"&lt;/table&gt;&lt;/div&gt;")]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="587.2,81.6" sap2010:WorkflowViewState.IdRef="Assign_6">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[str_HtmlBody]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String" xml:space="preserve">["
-&lt;html&gt;
-&lt;body style='font-family:Arial,sans-serif;color:#333'&gt;
-
-&lt;p&gt;Hi Neil,&lt;/p&gt;
-&lt;p&gt;Your bank statement for &lt;b&gt;" + in_Month + " " + in_Year + "&lt;/b&gt; has been processed successfully.&lt;br/&gt;
-New transactions added: &lt;b&gt;" + in_RowCount.ToString + "&lt;/b&gt;&lt;/p&gt;
-
-&lt;hr/&gt;
-&lt;h3 style='color:#2C3E50'&gt;BUDGET SUMMARY — " + in_Month + " " + in_Year + "&lt;/h3&gt;
-
-&lt;table style='border-collapse:collapse;width:60%'&gt;
-    &lt;tr style='background-color:#2C3E50;color:white'&gt;
-        &lt;th style='padding:10px;border:1px solid #ddd'&gt;Category&lt;/th&gt;
-        &lt;th style='padding:10px;border:1px solid #ddd'&gt;Spent (₹)&lt;/th&gt;
-        &lt;th style='padding:10px;border:1px solid #ddd'&gt;Budget (₹)&lt;/th&gt;
-    &lt;/tr&gt;
-    " + str_TableRows + "
-&lt;/table&gt;
-
-&lt;br/&gt;" +
-If(String.IsNullOrEmpty(str_OverBudget),
-"&lt;p style='color:green'&gt;&lt;b&gt;✅ Great job! All categories are within budget this month!&lt;/b&gt;&lt;/p&gt;",
-"&lt;p&gt;&lt;b style='color:red'&gt;⚠️ OVER BUDGET ALERT:&lt;/b&gt;&lt;ul&gt;" + str_OverBudget + "&lt;/ul&gt;&lt;/p&gt;") +
-"
-&lt;hr/&gt;
-&lt;p&gt;Regards,&lt;br/&gt;&lt;b&gt;UiPath Expense Tracker Bot&lt;/b&gt;&lt;/p&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;"]</InArgument>
+        <InArgument x:TypeArguments="x:String">["&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;body style='margin:0;padding:0;background-color:#F5F5F5;font-family:Arial,sans-serif'&gt;&lt;div style='max-width:650px;margin:30px auto;background-color:#ffffff;border-radius:10px;overflow:hidden'&gt;&lt;div style='background-color:#1A237E;padding:30px;text-align:center'&gt;&lt;h1 style='margin:0;color:#ffffff;font-size:24px'&gt;🏦 EXPENSE TRACKER&lt;/h1&gt;&lt;p style='margin:8px 0 0 0;color:#90CAF9;font-size:13px'&gt;Bank Statement Processed&lt;/p&gt;&lt;/div&gt;&lt;div style='padding:25px 30px 10px 30px'&gt;&lt;p style='font-size:15px;color:#333'&gt;&lt;p style='font-size:14px;color:#555'&gt;Your bank statement for &lt;b&gt;" + in_Month + " " + in_Year + "&lt;/b&gt; has been processed successfully.&lt;/p&gt;&lt;/div&gt;&lt;div style='margin:10px 30px;background-color:#E8EAF6;border-radius:8px;padding:20px'&gt;&lt;p style='margin:0 0 8px 0;font-size:13px;color:#5C6BC0;font-weight:bold'&gt;📊 TRANSACTION SUMMARY&lt;/p&gt;&lt;table style='width:100%;border-collapse:collapse'&gt;&lt;tr&gt;&lt;td style='padding:5px 0;font-size:14px;color:#333'&gt;New Transactions Added&lt;/td&gt;&lt;td style='padding:5px 0;font-size:14px;color:#1A237E;font-weight:bold;text-align:right'&gt;" + in_RowCount.ToString + "&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style='padding:5px 0;font-size:14px;color:#333'&gt;Statement Period&lt;/td&gt;&lt;td style='padding:5px 0;font-size:14px;color:#1A237E;font-weight:bold;text-align:right'&gt;" + in_Month + " " + in_Year + "&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;div style='padding:20px 30px'&gt;&lt;p style='margin:0 0 10px 0;font-size:13px;color:#5C6BC0;font-weight:bold'&gt;💰 BUDGET SUMMARY — " + in_Month.ToUpper + " " + in_Year + "&lt;/p&gt;&lt;table style='width:100%;border-collapse:collapse'&gt;&lt;tr style='background-color:#283593'&gt;&lt;th style='padding:12px 15px;text-align:left;color:#ffffff;font-size:13px'&gt;Category&lt;/th&gt;&lt;th style='padding:12px 15px;text-align:right;color:#ffffff;font-size:13px'&gt;Spent ₹&lt;/th&gt;&lt;th style='padding:12px 15px;text-align:right;color:#ffffff;font-size:13px'&gt;Budget ₹&lt;/th&gt;&lt;/tr&gt;" + str_TableRows + "&lt;/table&gt;&lt;/div&gt;&lt;div style='padding:0 30px'&gt;" + str_OverBudgetSection + "&lt;/div&gt;&lt;div style='background-color:#F5F5F5;padding:20px 30px;border-top:1px solid #E0E0E0;margin-top:10px'&gt;&lt;p style='margin:0;font-size:12px;color:#9E9E9E;text-align:center'&gt;UiPath Expense Tracker Bot&lt;/p&gt;&lt;p style='margin:4px 0 0 0;font-size:12px;color:#9E9E9E;text-align:center'&gt;Processed on: " + str_Timestamp + "&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;"]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" ReplyTo="{x:Null}" Result="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Body="[str_HtmlBody]" DisplayName="Send SMTP Mail Message" Email="[str_GmailUser]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="664,146.4" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="True" Port="587" SecureConnection="Auto" SecurePassword="[str_GmailPass]" Server="smtp.gmail.com" Subject="[&quot;Expense Tracker Updated - &quot; + in_Month + &quot; &quot; + in_Year]" To="[str_GmailUser]">
+    <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" ReplyTo="{x:Null}" Result="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Body="[str_HtmlBody]" DisplayName="Send SMTP Mail Message" Email="[str_GmailUser]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="587.2,148.8" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="True" Port="587" SecureConnection="Auto" SecurePassword="[str_GmailPass]" Server="smtp.gmail.com" Subject="[&quot;Expense Tracker Updated - &quot; + in_Month + &quot; &quot; + in_Year]" To="[str_GmailUser]">
       <ui:SendMail.Files>
         <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
       </ui:SendMail.Files>
     </ui:SendMail>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="664,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Notification email sent successfully for &quot; + in_Month + &quot; &quot; + in_Year]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="587.2,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Notification email sent successfully for &quot; + in_Month + &quot; &quot; + in_Year]" />
   </Sequence>
 </Activity>
